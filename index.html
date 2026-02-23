@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawCharts);
+window.addEventListener('resize', drawCharts); 
+
+function drawCharts() {
+
+  // ====== DATOS PORCENTAJE ======
+  var data1 = google.visualization.arrayToDataTable([
+    ['Año', 'Porcentaje'],
+    [2008, 77.00],
+    [2010, 78.50],
+    [2012, 74.70],
+    [2014, 76.20],
+    [2016, 77.10],
+    [2018, 76.40]
+  ]);
+
+  var options1 = {
+    title: 'Grafica porcentual de Pobreza en Chiapas',
+
+    chartArea: { width: '80%', height: '70%' },
+
+    legend: { position: 'bottom' },
+
+    hAxis: {
+      title: 'Año',
+      ticks: [2008, 2010, 2012, 2014, 2016, 2018]
+    },
+
+    vAxis: {
+      title: 'Porcentaje',
+      viewWindow: { min: 0, max: 100 }
+    },
+
+    trendlines: {
+      0: {
+        type: 'linear',
+        color: 'red',
+        lineWidth: 3,
+        opacity: 0.6,
+        showR2: true
+      }
+    }
+  };
+
+  var chart1 = new google.visualization.LineChart(
+    document.getElementById('chart_porcentaje')
+  );
+  chart1.draw(data1, options1);
+
+
+  // ====== DATOS PERSONAS ======
+  var data2 = google.visualization.arrayToDataTable([
+    ['Año', 'Personas'],
+    [2008, 3682.30],
+    [2010, 3866.30],
+    [2012, 3782.30],
+    [2014, 3961.00],
+    [2016, 4114.00],
+    [2018, 4174.60]
+  ]);
+
+  var options2 = {
+    title: 'Grafica de personas en Pobreza en Chiapas',
+
+    chartArea: { width: '80%', height: '70%' },
+
+    legend: { position: 'bottom' },
+
+    hAxis: {
+      title: 'Año',
+      ticks: [2008, 2010, 2012, 2014, 2016, 2018]
+    },
+
+    vAxis: {
+      title: 'Personas',
+      viewWindow: { min: 0 }
+    },
+
+    trendlines: {
+      0: {
+        type: 'linear',
+        color: 'red',
+        lineWidth: 3,
+        opacity: 0.6,
+        showR2: true
+      }
+    }
+
+  };
+
+  var chart2 = new google.visualization.ColumnChart(
+    document.getElementById('chart_personas')
+  );
+  chart2.draw(data2, options2);
+}
+</script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  flex-wrap: wrap; 
+  width: 100%;
+}
+
+.chart {
+  width: 45%;      
+  height: 70vh;    
+  min-width: 350px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <div id="chart_porcentaje" class="chart"></div>
+  <div id="chart_personas" class="chart"></div>
+</div>
+
+</body>
+</html>
